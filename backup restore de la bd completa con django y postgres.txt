@@ -1,0 +1,16 @@
+1. Respaldar data en un JSON.
+python3 manage.py dumpdata --all > ./mydump.json
+
+2. Respaldar los esquemas(schemas) en SQL.
+python3 manage.py sqlflush > schema.sql
+
+3. Creamos la base de datos nueva de no tenerla y nos conectamos a ella.
+$ sudo -u postgres createdb db_nueva
+$ sudo -u postgres psql db_nueva
+
+4. Cargamos los schemas.
+db_nueva=# \i schema.sql
+db_nueva=# ctrl-d
+
+5. Por último cargamos la data.
+python3 manage.py loaddata ./mydump.json
